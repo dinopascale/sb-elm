@@ -1,5 +1,4 @@
 import StorybookElm from "../vite-plugin-storybook-elm";
-import ElmIndexer from "./elmIndexer";
 
 /** @type { import('@storybook/html-vite').StorybookConfig } */
 const config = {
@@ -13,6 +12,7 @@ const config = {
     name: "@storybook/html-vite",
   },
   features: {
+    // fundamental to avoid all problems with indexers
     storyStoreV7: false,
   },
   core: {
@@ -22,6 +22,5 @@ const config = {
     config.plugins.push(StorybookElm());
     return config;
   },
-  experimental_indexers: [ElmIndexer],
 };
 export default config;

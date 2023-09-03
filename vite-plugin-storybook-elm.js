@@ -69,10 +69,10 @@ export default function storybookElm() {
           ${transformed}
           
           export default {
-            title: "Example/Qualcosa"
+            title: "Basic"
           }
           
-          export const H1 = () => {
+          export const Basic = () => {
             let node = document.createElement('div');
             let app;
             window.requestAnimationFrame(() => {
