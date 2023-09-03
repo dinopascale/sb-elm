@@ -1,4 +1,4 @@
-module HelloWorld exposing (main)
+module Stories.HelloWorld exposing (main)
 
 import Html exposing (Html)
 
