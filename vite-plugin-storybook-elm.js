@@ -47,12 +47,10 @@ export default function storybookElm() {
     name: "storybook-elm",
     enforce: "pre",
     async transform(code, id) {
-      if (!fileRegex.test(id)) {
-        return { code: code, map: null };
-      }
       if (fileRegex.test(id)) {
-        const modulePath = fileRegex.exec(id)[1];
-        const fullModuleName = modulePath.split("/").join(".");
+        let modulePath = fileRegex.exec(id)[1];
+        let finalModuleName = modulePath.split("/").slice(-1)[0];
+        let fullModuleName = modulePath.split("/").join(".");
 
         try {
           const compiled = await compiler.compileToString(id, {
@@ -69,17 +67,17 @@ export default function storybookElm() {
           ${transformed}
           
           export default {
-            title: "Basic"
+            title: "${modulePath}"
           }
           
-          export const Basic = () => {
+          export const ${finalModuleName} = () => {
             let node = document.createElement('div');
             let app;
             window.requestAnimationFrame(() => {
               if (app) {
                 return
               }
-              app = globalThis.Elm.Stories.Basic.init({ node })
+              app = globalThis.Elm.Stories.${fullModuleName}.init({ node })
               if (app.ports && app.ports.logAction) {
                 app.ports.logAction.subscribe((msg) => {
                   controls.onAction(msg)

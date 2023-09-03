@@ -1,4 +1,5 @@
-module Stories.Basic exposing (main)
+module Stories.Nested.NotBasic exposing (main)
+
 import Browser
 import Html exposing (Html)
 
@@ -15,4 +16,4 @@ main =
     
 view : Html msg
 view =
-    Html.div [] [Html.text "Hello Storybook from basic component"]
+    Html.div [] [Html.text "Not basic component"]
